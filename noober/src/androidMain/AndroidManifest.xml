@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application>
+        <activity
+            android:name="com.abhi165.noober.NoobActivity"
+            android:exported="true"
+            android:label="@string/title_activity_noob"
+            android:theme="@style/Theme.Noober20" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="noober" android:host="open" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

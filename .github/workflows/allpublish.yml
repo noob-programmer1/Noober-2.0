@@ -1,0 +1,14 @@
+name: All Publish
+on:
+  workflow_dispatch: null
+jobs:
+  call-kmmbridge-publish:
+    permissions:
+      contents: write
+      packages: write
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuild.yml@v0.9
+    with:
+      publishTask: kmmBridgePublish
+        publishKotlinMultiplatformPublicationToGitHubPackagesRepository
+        publishAndroidReleasePublicationToGitHubPackagesRepository
+      jvmVersion: '17'
