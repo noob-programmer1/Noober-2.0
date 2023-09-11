@@ -137,14 +137,6 @@ internal fun MoreScreen(
             Divider()
             Spacer(modifier = modifier.height(16.dp))
 
-            Text(
-                text = "About",
-                style = MaterialTheme.typography.headlineMedium,
-                color = Color.Black,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace
-            )
-
         }
     }
 }
