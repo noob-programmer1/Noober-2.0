@@ -11,7 +11,7 @@ plugins {
 kotlin {
     //targetHierarchy.default()
 
-    android {
+    `androidTarget` {
         publishAllLibraryVariants()
         compilations.all {
             kotlinOptions {
@@ -79,7 +79,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     namespace = "com.abhi165.noober"
-    compileSdk = 34
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
     }
@@ -96,6 +96,6 @@ addGithubPackagesRepository()
 
 kmmbridge {
     mavenPublishArtifacts()
-    githubReleaseVersions()
+    manualVersions()
     spm()
 }
