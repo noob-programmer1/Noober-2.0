@@ -2,8 +2,8 @@
 import PackageDescription
 
 // BEGIN KMMBRIDGE VARIABLES BLOCK (do not edit)
-let remoteKotlinUrl = "https://maven.pkg.github.com/ABHI165/Noober-2.0/github/abhi165/noober/noober-kmmbridge/0.1-alpha2.1/noober-kmmbridge-0.1-alpha2.1.zip"
-let remoteKotlinChecksum = "e8581eca0b33a497b89b5fb0cea3a20237f17c237f8ddea8f893099470cd0585"
+let remoteKotlinUrl = "https://maven.pkg.github.com/ABHI165/Noober-2.0/io/github/abhi165/noober-kmmbridge/0.1/noober-kmmbridge-0.1.zip"
+let remoteKotlinChecksum = "9c558aa9fec0ae9f727c0fe8b4e0434bd27256b46209ed3d0f3fe72e921c8514"
 let packageName = "Noober"
 // END KMMBRIDGE BLOCK
 
