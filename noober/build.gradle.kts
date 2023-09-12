@@ -96,6 +96,7 @@ addGithubPackagesRepository()
 
 kmmbridge {
     mavenPublishArtifacts()
+    noGitOperations()
     manualVersions()
     spm()
 }
