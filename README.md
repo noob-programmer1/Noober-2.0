@@ -52,36 +52,17 @@ Noober 2.0 is the second version of Noober, a debugging library designed specifi
 
 Step 1: Configure Maven Repository
 
-To get started with Noober 2.0 on Android, you need to add the library to your project using GitHub Packages. Follow these steps:
+To get started with Noober 2.0 on Android:
 
-Open your root-level build.gradle file.
-
-Add the following code inside the repositories block
-
-```gradle
- repositories {
-   maven {
-       url = uri("https://maven.pkg.github.com/abhi165/Noober-2.0")
-        credentials {
-           username = "GITHUB_USER"
-           password = "GITHUB_TOKEN"
-       }
-   }
-}
-
-```
-
-Step 2: Add Gradle Dependency
-
-Next, add the Noober 2.0 dependency to your app-level build.gradle file:
+Add the Noober 2.0 dependency to your app-level build.gradle file:
 
 ```gradle
 dependencies {
     // For release builds
-    releaseImplementation ("github.abhi165.noober:noober-no-op-android:${version}")
+    releaseImplementation ("io.github.abhi165:noober-no-op-android:${version}")
 
     // For debug builds
-    debugImplementation ("github.abhi165.noober:noober-android:${version}")
+    debugImplementation ("io.github.abhi165:noober-android:${version}")
     
     // Other dependencies...
 }
