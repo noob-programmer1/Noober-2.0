@@ -4,8 +4,6 @@ plugins {
     `maven-publish`
     signing
 }
-val GROUP: String by project
-val LIBRARY_VERSION: String by project
 
 // Stub secrets to let the project sync and build without the publication values set up
 ext["signing.keyId"] = null
@@ -13,7 +11,6 @@ ext["signing.password"] = null
 ext["signing.secretKeyRingFile"] = null
 ext["ossrhUsername"] = null
 ext["ossrhPassword"] = null
-
 
 // Grabbing secrets from local.properties file or from environment variables, which could be used on CI
 val secretPropsFile = project.rootProject.file("local.properties")
@@ -39,59 +36,59 @@ val javadocJar by tasks.registering(Jar::class) {
 
 fun getExtraString(name: String) = ext[name]?.toString()
 
-    afterEvaluate {
-        publishing {
-            // Configure maven central repository
-            repositories {
-                maven {
-                    name = "sonatype"
-                    setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-                    credentials {
-                        username = getExtraString("ossrhUsername")
-                        password = getExtraString("ossrhPassword")
-                    }
+publishing {
+    // Configure maven central repository
+    repositories {
+        maven {
+            name = "sonatype"
+            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = getExtraString("ossrhUsername")
+                password = getExtraString("ossrhPassword")
+            }
+        }
+    }
+
+    // Configure all publications
+    publications.withType<MavenPublication> {
+
+        // Stub javadoc.jar artifact
+        artifact(javadocJar.get())
+
+        // Provide artifacts information requited by Maven Central
+        pom {
+            name.set("Noober 2.0")
+            description.set("Debugging Library for iOS & Android")
+            url.set("https://github.com/ABHI165/Noober-2.0")
+
+            licenses {
+                license {
+                    name.set("Apache License 2.0")
+                    url.set("http://www.apache.org/licenses/LICENSE-2.0")
                 }
             }
-            publications {
-                register<MavenPublication>("release") {
-                    // Stub javadoc.jar artifact
-                    groupId = GROUP
-                    version = LIBRARY_VERSION
-
-                    artifact(javadocJar.get())
-
-                    // Provide artifacts information requited by Maven Central
-                    pom {
-                        name.set("Noober 2.0")
-                        description.set("Debugging Library for iOS & Android")
-                        url.set("https://github.com/ABHI165/Noober-2.0")
-
-                        licenses {
-                            license {
-                                name.set("Apache License 2.0")
-                                url.set("http://www.apache.org/licenses/LICENSE-2.0")
-                            }
-                        }
-                        developers {
-                            developer {
-                                id.set("ABHI165")
-                                name.set("Abhishek Agarwal")
-                                email.set("abhiagarwal16052000@gmail.com")
-                            }
-                        }
-                        scm {
-                            url.set("https://github.com/ABHI165/Noober-2.0.git")
-                        }
-
-                    }
+            developers {
+                developer {
+                    id.set("ABHI165")
+                    name.set("Abhishek Agarwal")
+                    email.set("abhiagarwal16052000@gmail.com")
                 }
+            }
+            scm {
+                url.set("https://github.com/ABHI165/Noober-2.0.git")
             }
 
         }
     }
+}
 
 // Signing artifacts. Signing.* extra properties values will be used
 
 signing {
     sign(publishing.publications)
+}
+
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    val signingTasks = tasks.withType<Sign>()
+    dependsOn(signingTasks)
 }
