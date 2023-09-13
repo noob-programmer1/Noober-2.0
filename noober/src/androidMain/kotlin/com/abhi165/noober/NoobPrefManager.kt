@@ -141,9 +141,9 @@ internal class NoobPrefManager(private val context: Context) : SharedPrefManager
                 it.remove(Constants.IS_FROM_ANDROID)
             }
 
-            for ((key, value ) in deppLinkParameters) {
-                val mappedKey = if(isFromAndroid) key else userProperties[key]
-                oldPrefValues.forEach {prefModel ->
+            for ((key, value) in deppLinkParameters) {
+                val mappedKey = if (isFromAndroid) key else userProperties[key]
+                oldPrefValues.forEach { prefModel ->
                     for ((oldKey, oldValue) in prefModel.data) {
                         if (oldKey == mappedKey) {
                             withContext(Dispatchers.Main) {

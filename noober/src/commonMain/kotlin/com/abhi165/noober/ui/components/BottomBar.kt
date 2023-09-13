@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 internal sealed class NavigationRoute(val route: String) {
     sealed class BottomNavItem(route: String, val icon: ImageVector, val title: String) :
         NavigationRoute(route) {
-        object Home: BottomNavItem("api", Icons.Rounded.Home, "API")
+        object Home : BottomNavItem("api", Icons.Rounded.Home, "API")
         object Properties : BottomNavItem("properties", Icons.Rounded.List, "Properties")
         object More : BottomNavItem("more", Icons.Rounded.Info, "More")
         object Logs : BottomNavItem("log", Icons.Rounded.ExitToApp, "Logs")

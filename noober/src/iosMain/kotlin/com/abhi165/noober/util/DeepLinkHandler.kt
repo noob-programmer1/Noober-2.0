@@ -12,7 +12,6 @@ internal object DeepLinkHandler {
             setHost(Constants.NOOB_HOST)
         }
 
-
         val queryItems = userProp.map { (key, value) ->
             NSURLQueryItem(key, value)
         }.toMutableList()
@@ -23,10 +22,10 @@ internal object DeepLinkHandler {
     }
 
     fun handleDeepLink(url: NSURL) {
-        if(url.host() != Constants.NOOB_HOST) return
-      val parameters = mutableMapOf<String, String>()
+        if (url.host() != Constants.NOOB_HOST) return
+        val parameters = mutableMapOf<String, String>()
         NSURLComponents(url, false).queryItems?.map { it as? NSURLQueryItem }?.forEach {
-            it?.let {query ->
+            it?.let { query ->
                 parameters[query.name] = query.value ?: ""
             }
         }

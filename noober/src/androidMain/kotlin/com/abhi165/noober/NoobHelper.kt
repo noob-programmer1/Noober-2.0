@@ -9,18 +9,16 @@ import com.abhi165.noober.ui.components.NavigationRoute
 internal object NoobHelper {
     private var hasNooberStartedAlready = false
     var isNooberVisible = false
-
-
     lateinit var prefManager: NoobPrefManager
         private set
 
     private lateinit var context: Context
 
-     lateinit var notificationManager: NotificationManager
+    lateinit var notificationManager: NotificationManager
         private set
 
     fun init(context: Context) {
-        if(hasNooberStartedAlready) return
+        if (hasNooberStartedAlready) return
 
         this.context = context.applicationContext
         prefManager = NoobPrefManager(context)
@@ -33,7 +31,7 @@ internal object NoobHelper {
         }
     }
 
-     private fun startNoobActivity(route: String? = null) {
+    private fun startNoobActivity(route: String? = null) {
         context.startActivity(Intent(context, NoobActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             route?.let {
@@ -42,7 +40,7 @@ internal object NoobHelper {
         })
     }
 
-     fun share(data: String) {
+    fun share(data: String) {
         val sendIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, data)

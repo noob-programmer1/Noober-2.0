@@ -16,6 +16,7 @@ internal class NotificationManager(private val context: Context) {
         private const val CHANNEL_ID = "noob_notification"
         private const val NOTIFICATION_ID = 165
     }
+
     private val notificationManager = NotificationManagerCompat.from(context)
 
     init {
@@ -38,7 +39,7 @@ internal class NotificationManager(private val context: Context) {
 
     @SuppressLint("MissingPermission")
     fun showNotification(contentText: String) {
-        if(NoobHelper.isNooberVisible)
+        if (NoobHelper.isNooberVisible)
             return
         val pendingIntent = PendingIntent.getActivity(
             context,

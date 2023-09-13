@@ -29,14 +29,15 @@ internal fun SharedPrefRow(
     modifier: Modifier = Modifier,
     key: String,
     value: String,
-    onValueChanges: (String)-> Unit
-    ) {
+    onValueChanges: (String) -> Unit
+) {
     var isSelected by remember {
         mutableStateOf(false)
     }
 
     val bgColour by animateColorAsState(
-        targetValue = if (isSelected) Color.White else Color.Blue.copy(0.01f))
+        targetValue = if (isSelected) Color.White else Color.Blue.copy(0.01f)
+    )
 
     val focusManager = LocalFocusManager.current
 
@@ -65,7 +66,7 @@ internal fun SharedPrefRow(
         AnimatedVisibility(visible = isSelected) {
             InputDialogView(key) {
                 it?.let {
-                   onValueChanges(it)
+                    onValueChanges(it)
                 }
                 isSelected = false
             }

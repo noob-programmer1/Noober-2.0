@@ -48,9 +48,9 @@ internal fun NoobScreen(
         topBar = {
             NoobAppBar(
                 searchWidgetState = searchWidgetState,
-                canGoBack =  !items.any { it.route == currentEntry },
+                canGoBack = !items.any { it.route == currentEntry },
                 showPrefSetting = (currentEntry == NavigationRoute.BottomNavItem.Properties.route) && isAndroid() && NoobRepository.hasPrefEncryptionData(),
-                searchTextState =searchState,
+                searchTextState = searchState,
                 onSettingClicked = {
                     navigator.navigate(NavigationRoute.SharedPrefSetting.route)
                 },
@@ -62,7 +62,10 @@ internal fun NoobScreen(
                 onSearchClicked = {},
                 onSearchTriggered = {
                     NoobRepository.changeSearchWidgetState(SearchWidgetState.OPENED)
-                    navigator.navigate(NavigationRoute.Search.route, options = NavOptions(launchSingleTop = true))
+                    navigator.navigate(
+                        NavigationRoute.Search.route,
+                        options = NavOptions(launchSingleTop = true)
+                    )
                 }
             )
         },
@@ -70,7 +73,8 @@ internal fun NoobScreen(
             if (items.any { it.route == currentEntry })
                 BottomBar(
                     items,
-                    selectedRoute = currentEntry ?: NavigationRoute.BottomNavItem.Home.route) {selectedRoute ->
+                    selectedRoute = currentEntry ?: NavigationRoute.BottomNavItem.Home.route
+                ) { selectedRoute ->
                     navigator.navigate(
                         selectedRoute,
                         options = NavOptions(

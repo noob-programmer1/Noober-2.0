@@ -29,9 +29,9 @@ internal fun SearchScreen(
     accountManager: AccountManager = getAccountManager(),
     searchState: Flow<SearchState>,
     onAPICallTapped: (APIInfoState) -> Unit,
-    goBack: ()-> Unit
+    goBack: () -> Unit
 ) {
-   val state by searchState.collectAsStateWithLifecycleOrCollectAsState(SearchState())
+    val state by searchState.collectAsStateWithLifecycleOrCollectAsState(SearchState())
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -40,8 +40,7 @@ internal fun SearchScreen(
             .fillMaxSize()
             .clickable {
                 focusManager.clearFocus(true)
-            }
-        ,
+            },
         contentPadding = PaddingValues(16.dp)
     ) {
 
@@ -52,8 +51,8 @@ internal fun SearchScreen(
         }
 
         state.prefData.forEach {
-            items(it.data.toList()) {pref ->
-                SharedPrefRow(key = pref.first, value = pref.second.toString()) {newValue ->
+            items(it.data.toList()) { pref ->
+                SharedPrefRow(key = pref.first, value = pref.second.toString()) { newValue ->
                     NoobRepository.addPrefData(
                         key = pref.first,
                         newValue = newValue,
@@ -66,7 +65,7 @@ internal fun SearchScreen(
         }
 
         items(state.logs) {
-            LogRow(it) {stackTrace ->
+            LogRow(it) { stackTrace ->
                 coroutineScope.launch {
                     val accountUsed = accountManager.generateDeepLink()
                     val message = "Account Used -> $accountUsed \n\n $stackTrace"

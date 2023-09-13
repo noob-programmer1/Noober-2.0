@@ -46,8 +46,8 @@ internal fun LogsScreen(
             )
         }
 
-        items(logs) {model ->
-            LogRow(model) {stackTrace ->
+        items(logs) { model ->
+            LogRow(model) { stackTrace ->
                 coroutineScope.launch {
                     val accountUsed = accountManager.generateDeepLink()
                     val message = "Account Used -> $accountUsed \n\n $stackTrace"

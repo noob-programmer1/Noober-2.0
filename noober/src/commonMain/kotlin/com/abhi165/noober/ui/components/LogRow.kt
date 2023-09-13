@@ -34,13 +34,13 @@ internal fun LogRow(
         Column(
             modifier = Modifier
                 .background(
-                    if(model.isError) Color.Red.copy(0.1f) else  Color.LightGray.copy(0.1f),
+                    if (model.isError) Color.Red.copy(0.1f) else Color.LightGray.copy(0.1f),
                     MaterialTheme.shapes.medium
                 )
-                .border(1.dp, Color.DarkGray.copy(0.6f), MaterialTheme.shapes.medium )
+                .border(1.dp, Color.DarkGray.copy(0.6f), MaterialTheme.shapes.medium)
                 .padding(8.dp)
         ) {
-            if(model.isError) {
+            if (model.isError) {
                 Button(
                     onClick = { onShareClicked(model.value) },
                     modifier = Modifier.align(Alignment.End)

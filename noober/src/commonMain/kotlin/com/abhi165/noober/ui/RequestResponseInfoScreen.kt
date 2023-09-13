@@ -37,7 +37,7 @@ internal fun RequestResponseInfoScreen(
             .fillMaxSize()
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        if(state.headers.isNotEmpty()) {
+        if (state.headers.isNotEmpty()) {
             Text(
                 text = "Header",
                 style = MaterialTheme.typography.titleMedium,
@@ -46,12 +46,12 @@ internal fun RequestResponseInfoScreen(
                 modifier = modifier.padding(bottom = 16.dp)
             )
 
-            for((key, value) in state.headers) {
+            for ((key, value) in state.headers) {
                 InfoCell(title = key, subtitle = value)
             }
         }
 
-        if(state.body.isNotEmpty()) {
+        if (state.body.isNotEmpty()) {
             Text(
                 text = "Body",
                 style = MaterialTheme.typography.titleMedium,
@@ -91,7 +91,7 @@ internal fun RequestResponseInfoScreen(
             }
         }
 
-        if(state.headers.isEmpty() && state.body.isEmpty()) {
+        if (state.headers.isEmpty() && state.body.isEmpty()) {
             Text("Nothing to see here 😏")
         }
     }

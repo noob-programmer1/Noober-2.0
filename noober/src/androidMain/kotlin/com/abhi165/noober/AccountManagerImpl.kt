@@ -1,14 +1,14 @@
 package com.abhi165.noober
 
-internal object AccountManagerImpl: AccountManager {
+internal object AccountManagerImpl : AccountManager {
     override suspend fun generateDeepLink(): String {
         val prop = NoobRepository.userProperties
         val deepLinkPrefValueMap = mutableMapOf<String, String>()
         val prefValues = NoobHelper.prefManager.getAllValuesWithPrefName()
 
-        prefValues.forEach {prefModel ->
+        prefValues.forEach { prefModel ->
             for ((key, value) in prefModel.data) {
-                if(prop.any { it.key == key })
+                if (prop.any { it.key == key })
                     deepLinkPrefValueMap[key] = value.toString()
             }
         }

@@ -9,7 +9,7 @@ import com.abhi165.noober.ui.NoobScreen
 import moe.tlaster.precompose.lifecycle.PreComposeActivity
 import moe.tlaster.precompose.lifecycle.setContent
 
-class NoobActivity : PreComposeActivity() {
+internal class NoobActivity : PreComposeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val route = intent.getStringExtra("route")

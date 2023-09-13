@@ -64,13 +64,13 @@ internal fun RootNavGraph(navigator: Navigator, modifier: Modifier) {
         scene(NavigationRoute.APIInfo.route) {
             val index: Int = it.path<Int>("index") ?: -1
             val state = NoobRepository.requestList.value[index]
-              APITabScreen(state)
+            APITabScreen(state)
         }
 
         scene(NavigationRoute.SharedPrefSetting.route) {
-              SharedPrefSettingView {
-                  navigator.goBack()
-              }
+            SharedPrefSettingView {
+                navigator.goBack()
+            }
         }
 
         scene(
@@ -87,8 +87,16 @@ internal fun RootNavGraph(navigator: Navigator, modifier: Modifier) {
             SearchScreen(searchState = NoobRepository.searchedData, onAPICallTapped = {
                 val index = NoobRepository.requestList.value.indexOf(it)
                 NoobRepository.changeSearchWidgetState(SearchWidgetState.CLOSED)
-                navigator.navigate(NavigationRoute.APIInfo.route.replace("{index}", index.toString()),
-                    options = NavOptions(launchSingleTop = true, popUpTo = PopUpTo(NavigationRoute.BottomNavItem.Home.route, inclusive = false)))
+                navigator.navigate(
+                    NavigationRoute.APIInfo.route.replace("{index}", index.toString()),
+                    options = NavOptions(
+                        launchSingleTop = true,
+                        popUpTo = PopUpTo(
+                            NavigationRoute.BottomNavItem.Home.route,
+                            inclusive = false
+                        )
+                    )
+                )
             }, goBack = {
                 navigator.goBack()
                 NoobRepository.changeSearchWidgetState(SearchWidgetState.CLOSED)

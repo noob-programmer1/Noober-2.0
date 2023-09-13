@@ -13,16 +13,16 @@ import platform.UIKit.UIWindow
 import platform.UIKit.UIWindowScene
 
 
-actual object Noober: NooberCommon  {
+actual object Noober : NooberCommon {
 
     fun start() {
         NoobHelper.registerProtocol()
     }
-
     fun getNoobProtocol() = NoobProtocol.`class`()
 
     @OptIn(ExperimentalForeignApi::class)
     fun getNoobWindow(frame: CValue<CGRect>): UIWindow = NoobWindow(frame)
+
     @OptIn(ExperimentalForeignApi::class)
     fun getNoobWindow(scene: UIWindowScene): UIWindow = NoobWindow(scene)
 

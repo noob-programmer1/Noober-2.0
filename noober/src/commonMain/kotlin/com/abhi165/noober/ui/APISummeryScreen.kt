@@ -27,7 +27,7 @@ internal fun APISummeryScreen(
     ) {
         item {
 
-            if(state.error?.isNotEmpty() == true) {
+            if (state.error?.isNotEmpty() == true) {
                 InfoCell(
                     title = "Error",
                     subtitle = state.error,

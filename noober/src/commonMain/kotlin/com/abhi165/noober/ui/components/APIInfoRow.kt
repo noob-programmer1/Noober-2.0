@@ -51,13 +51,14 @@ internal fun APIInfoRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
 
-            Column(modifier = modifier
-                .padding(horizontal = 4.dp, vertical = 4.dp)
-                .background(
-                    state.statusCodeColor.copy(0.1f),
-                    RoundedCornerShape(16.dp)
-                )
-                .padding(16.dp)
+            Column(
+                modifier = modifier
+                    .padding(horizontal = 4.dp, vertical = 4.dp)
+                    .background(
+                        state.statusCodeColor.copy(0.1f),
+                        RoundedCornerShape(16.dp)
+                    )
+                    .padding(16.dp)
             ) {
                 Text(
                     text = state.statusCode,
@@ -69,7 +70,7 @@ internal fun APIInfoRow(
                     text = state.method,
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.titleSmall,
-                    color =  state.statusCodeColor.copy(0.7f)
+                    color = state.statusCodeColor.copy(0.7f)
                 )
             }
             Column {

@@ -19,12 +19,12 @@ internal class NoobWindow : UIWindow {
 
     constructor (
         scene: UIWindowScene
-    ): super(scene)
+    ) : super(scene)
 
 
     override fun motionEnded(motion: UIEventSubtype, withEvent: UIEvent?) {
         super.motionEnded(motion, withEvent)
-        if(motion == UIEventSubtypeMotionShake) {
+        if (motion == UIEventSubtypeMotionShake) {
             Noober.toggle()
         }
     }

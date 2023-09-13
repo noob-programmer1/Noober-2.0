@@ -9,15 +9,14 @@ internal object DateUtil {
 
     fun now(): String = Clock.System.now().toString()
 
-
-    fun calculateDiff(from: String, to:String): String {
+    fun calculateDiff(from: String, to: String): String {
         val responseTime = from.toInstant()
         val requestTime = to.toInstant()
         val difference = (responseTime - requestTime).absoluteValue
         return difference.toString()
     }
 
-    fun formatTime(string: String): String{
+    fun formatTime(string: String): String {
         val time = string.toInstant().toLocalDateTime(TimeZone.currentSystemDefault())
         return "${time.hour}:${time.minute}:${time.second}"
     }

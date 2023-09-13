@@ -6,7 +6,7 @@ import kotlin.native.ObjCName
 
 
 interface NooberCommon {
-    fun log(tag:String, value: Any, isError: Boolean = false) {
+    fun log(tag: String, value: Any, isError: Boolean = false) {
         NoobRepository.log(tag, value, isError)
     }
 
@@ -19,7 +19,8 @@ interface NooberCommon {
     fun intercept(url: String) {}
 }
 
-expect object Noober: NooberCommon
+expect object Noober : NooberCommon
+
 internal expect fun getSharedPrefManager(): SharedPrefManager
 internal expect fun isAndroid(): Boolean
 internal expect fun share(data: String)

@@ -7,11 +7,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,7 +28,8 @@ import androidx.compose.ui.window.Dialog
 @Composable
 internal fun InputDialogView(
     heading: String,
-    onDismiss:(String?) -> Unit) {
+    onDismiss: (String?) -> Unit
+) {
 
     var newPrefValue by remember {
         mutableStateOf("")
@@ -38,8 +39,7 @@ internal fun InputDialogView(
         Card(
             shape = MaterialTheme.shapes.medium,
             modifier = Modifier
-                .padding(8.dp)
-            ,
+                .padding(8.dp),
         ) {
             Column(
                 Modifier
@@ -80,7 +80,8 @@ internal fun InputDialogView(
 
                     Button(
                         onClick = {
-                            onDismiss(newPrefValue) },
+                            onDismiss(newPrefValue)
+                        },
                         Modifier
                             .fillMaxWidth()
                             .padding(8.dp)

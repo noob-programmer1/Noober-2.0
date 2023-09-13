@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 internal fun Request.toModel(timeout: Long): RequestModel {
     var requestBody = ""
-    body?.let {body->
+    body?.let { body ->
         val buffer = Buffer().also {
             body.writeTo(it)
         }
@@ -26,7 +26,8 @@ internal fun Request.toModel(timeout: Long): RequestModel {
             url = url.toString(),
             method = method,
             headers = header,
-            body = requestBody),
+            body = requestBody
+        ),
         header = header,
         body = prettyPrint(requestBody),
         date = DateUtil.now(),
@@ -35,6 +36,7 @@ internal fun Request.toModel(timeout: Long): RequestModel {
         cachePolicy = cacheControl.toString()
     )
 }
+
 internal fun Response.toModel(requestDate: String): ResponseModel {
     val responseBodyString = peekBody(Long.MAX_VALUE).string()
 

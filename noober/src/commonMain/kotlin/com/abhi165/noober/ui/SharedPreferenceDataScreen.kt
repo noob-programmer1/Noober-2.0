@@ -24,7 +24,8 @@ internal fun SharedPreferenceDataScreen(
     prefIdentifier: String = "",
     modifier: Modifier = Modifier
 ) {
-    val sharedPrefState by NoobRepository.getPrefData(prefIdentifier).collectAsStateWithLifecycleOrCollectAsState(SharedPrefModel())
+    val sharedPrefState by NoobRepository.getPrefData(prefIdentifier)
+        .collectAsStateWithLifecycleOrCollectAsState(SharedPrefModel())
 
     DisposableEffect(Unit) {
         onDispose {

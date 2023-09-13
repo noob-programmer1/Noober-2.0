@@ -38,7 +38,7 @@ internal fun NoobAppBar(
     showPrefSetting: Boolean,
     searchTextState: String,
     onSettingClicked: () -> Unit,
-    onBackClicked: ()-> Unit,
+    onBackClicked: () -> Unit,
     onTextChange: (String) -> Unit,
     onSearchClicked: (String) -> Unit,
     onSearchTriggered: () -> Unit
@@ -53,6 +53,7 @@ internal fun NoobAppBar(
                 onSettingClicked = onSettingClicked
             )
         }
+
         SearchWidgetState.OPENED -> {
             SearchAppBar(
                 text = searchTextState,
@@ -84,7 +85,7 @@ fun DefaultAppBar(
 
         navigationIcon = {
             AnimatedVisibility(canGoBack) {
-                IconButton(onBackClicked){
+                IconButton(onBackClicked) {
                     Icon(Icons.Sharp.ArrowBack, contentDescription = null)
                 }
             }

@@ -24,7 +24,7 @@ import platform.Foundation.NSURLSessionResponseDisposition
 import platform.Foundation.NSURLSessionTask
 import platform.Foundation.appendData
 
-class NoobProtocol: NSURLProtocol, NSURLSessionDataDelegateProtocol {
+class NoobProtocol : NSURLProtocol, NSURLSessionDataDelegateProtocol {
 
     @OverrideInit
     constructor (
@@ -59,7 +59,7 @@ class NoobProtocol: NSURLProtocol, NSURLSessionDataDelegateProtocol {
     override fun startLoading() {
         val request = request().mutableCopy() as NSMutableURLRequest
         val oldURL = request.URL?.absoluteString()
-        val newURLString  = oldURL?.replace(NoobRepository.OLD_URL, NoobRepository.NEW_URL)
+        val newURLString = oldURL?.replace(NoobRepository.OLD_URL, NoobRepository.NEW_URL)
         newURLString?.let {
             request.setURL(NSURL(string = newURLString))
         }

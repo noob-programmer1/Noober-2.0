@@ -26,7 +26,7 @@ import com.abhi165.noober.NoobRepository
 import com.abhi165.noober.model.AvailablePrefModel
 
 @Composable
-internal fun SharedPrefSettingView(onPrefSaved: ()-> Unit) {
+internal fun SharedPrefSettingView(onPrefSaved: () -> Unit) {
     val availablePref = NoobRepository.getAvailablePreferences().toMutableList()
 
     Column(

@@ -46,7 +46,7 @@ internal fun MoreScreen(
     modifier: Modifier = Modifier,
     accountManager: AccountManager = getAccountManager()
 ) {
-   val focusManager = LocalFocusManager.current
+    val focusManager = LocalFocusManager.current
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -95,10 +95,11 @@ internal fun MoreScreen(
                 isError = replacedText.isNotBlank()
             )
 
-            Button(onClick = {
-                NoobRepository.changeURL(newURL = replacedText, oldURL = replaceableText)
-                focusManager.clearFocus(true)
-            },
+            Button(
+                onClick = {
+                    NoobRepository.changeURL(newURL = replacedText, oldURL = replaceableText)
+                    focusManager.clearFocus(true)
+                },
                 enabled = replacedText.isNotBlank() && replaceableText.isNotBlank()
             ) {
                 Text(text = "Change")
@@ -123,12 +124,13 @@ internal fun MoreScreen(
                     coroutineScope.launch {
                         val link = accountManager.generateDeepLink()
                         share(link)
-                    } }) {
+                    }
+                }) {
                     Icon(imageVector = Icons.Sharp.Share, contentDescription = "")
                     Text(text = "Share")
                 }
 
-                Button(onClick = { accountManager.restoreAccount()}) {
+                Button(onClick = { accountManager.restoreAccount() }) {
                     Icon(imageVector = Icons.Sharp.Refresh, contentDescription = "")
                     Text(text = "Restore")
                 }

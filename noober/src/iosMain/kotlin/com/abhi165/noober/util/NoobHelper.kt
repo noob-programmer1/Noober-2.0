@@ -23,13 +23,13 @@ internal object NoobHelper {
             while (rootController?.presentedViewController != null) {
                 rootController = rootController.presentedViewController
             }
-            return  rootController
+            return rootController
         }
 
     @OptIn(ExperimentalForeignApi::class)
     private val noobController: UIViewController by lazy {
         var topSafeArea = 0f
-            UIApplication.sharedApplication.keyWindow?.safeAreaInsets?.useContents {
+        UIApplication.sharedApplication.keyWindow?.safeAreaInsets?.useContents {
             topSafeArea = this.top.toFloat()
         }
         PreComposeApplication { NoobScreen(topSafeArea = topSafeArea) }
@@ -37,7 +37,7 @@ internal object NoobHelper {
 
 
     fun toggle() {
-        if(!isNoobAlreadyShowing) {
+        if (!isNoobAlreadyShowing) {
             noobController.modalPresentationStyle = UIModalPresentationFullScreen
             topViewController?.presentViewController(noobController, true, null)
         } else {
@@ -46,14 +46,14 @@ internal object NoobHelper {
         isNoobAlreadyShowing = !isNoobAlreadyShowing
     }
 
-      fun share(data: String) {
+    fun share(data: String) {
         val activityViewController = UIActivityViewController(listOf(data), null)
-          topViewController?.presentViewController(activityViewController, true, null)
+        topViewController?.presentViewController(activityViewController, true, null)
     }
 
     @OptIn(BetaInteropApi::class)
     fun registerProtocol() {
-        if(hasAlreadyStarted) return
+        if (hasAlreadyStarted) return
         hasAlreadyStarted = true
         NoobProtocol.`class`()?.let { NSURLProtocol.registerClass(it) }
     }

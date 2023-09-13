@@ -11,15 +11,15 @@ import platform.Foundation.NSString
 import platform.Foundation.NSUserDefaults
 import platform.darwin.NSInteger
 
-internal object UserDefaultManager: SharedPrefManager {
+internal object UserDefaultManager : SharedPrefManager {
     private val userDefaults = NSUserDefaults.standardUserDefaults
     private val noobUserDefault = NSUserDefaults(suiteName = "noob")
 
     private val _prefStateFlow = MutableStateFlow(SharedPrefModel())
 
-    override fun getPrefValues(prefName: String): Flow<SharedPrefModel>  {
+    override fun getPrefValues(prefName: String): Flow<SharedPrefModel> {
         getLatestData()
-        return  _prefStateFlow
+        return _prefStateFlow
     }
 
     override fun changeValueOf(key: String, newValue: String, prefName: String, oldValue: Any) {
@@ -35,8 +35,9 @@ internal object UserDefaultManager: SharedPrefManager {
     }
 
     override suspend fun getAllValuesWithPrefName(): List<SharedPrefModel> {
-        val userDefaultData =  userDefaults.dictionaryRepresentation()
-        val mappedData = userDefaultData.mapKeys { it.key.toString() }.mapValues { it.value.toString() }
+        val userDefaultData = userDefaults.dictionaryRepresentation()
+        val mappedData =
+            userDefaultData.mapKeys { it.key.toString() }.mapValues { it.value.toString() }
         return listOf(SharedPrefModel("", mappedData))
     }
 
@@ -55,14 +56,15 @@ internal object UserDefaultManager: SharedPrefManager {
 
     fun importAccount(prop: Map<String, String>) {
         NSUserDefaults.standardUserDefaults.removeSuiteNamed("noob")
-        val isFromAndroid  = prop[Constants.IS_FROM_ANDROID] == "1"
+        val isFromAndroid = prop[Constants.IS_FROM_ANDROID] == "1"
         val deppLinkParameters = prop.toMutableMap().also {
             it.remove(Constants.IS_FROM_ANDROID)
         }
 
-        val userProperties = NoobRepository.userProperties.associate { it.alternateKeyForCrossPlatform to it.key }
-        for((key, value ) in deppLinkParameters) {
-            val mappedKey = if(isFromAndroid) userProperties[key] else key
+        val userProperties =
+            NoobRepository.userProperties.associate { it.alternateKeyForCrossPlatform to it.key }
+        for ((key, value) in deppLinkParameters) {
+            val mappedKey = if (isFromAndroid) userProperties[key] else key
             val oldValue = userDefaults.objectForKey(mappedKey ?: key)
             setNewValueWithSameType(
                 newValue = value,
@@ -75,11 +77,11 @@ internal object UserDefaultManager: SharedPrefManager {
 
     fun restoreAccount() {
         val values = noobUserDefault.dictionaryRepresentation()
-        for((key, oldValue) in values) {
+        for ((key, oldValue) in values) {
             noobUserDefault.removeObjectForKey(key.toString())
             setNewValueWithSameType(
                 newValue = oldValue.toString(),
-                oldValue =  userDefaults.objectForKey(key.toString()),
+                oldValue = userDefaults.objectForKey(key.toString()),
                 key = key.toString()
             )
         }

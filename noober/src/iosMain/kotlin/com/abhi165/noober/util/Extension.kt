@@ -28,7 +28,7 @@ import kotlin.to
 
 internal fun NSURLRequest.toModel(withDate: String = DateUtil.now()): RequestModel {
     val url = this.URL?.absoluteString ?: ""
-    val headers =  this.allHTTPHeaderFields()?.filter { it.key != null && it.value != null }
+    val headers = this.allHTTPHeaderFields()?.filter { it.key != null && it.value != null }
         ?.map { it.key.toString() to it.value.toString() }
         ?.toMap() ?: mapOf()
     val body = this.HTTPBodyStream?.toHttpBody() ?: ""
@@ -56,22 +56,30 @@ internal fun NSMutableData.toModel(response: NSURLResponse?, requestDate: String
     val date = DateUtil.now()
     var responseBody = ""
     try {
-        val jsonData = NSJSONSerialization.JSONObjectWithData(this, options = NSJSONReadingFragmentsAllowed, error = null)
+        val jsonData = NSJSONSerialization.JSONObjectWithData(
+            this,
+            options = NSJSONReadingFragmentsAllowed,
+            error = null
+        )
         jsonData?.let {
-            val jsonString = NSJSONSerialization.dataWithJSONObject(jsonData, options = NSJSONWritingPrettyPrinted, error = null)
+            val jsonString = NSJSONSerialization.dataWithJSONObject(
+                jsonData,
+                options = NSJSONWritingPrettyPrinted,
+                error = null
+            )
             jsonString?.let {
                 responseBody = NSString.create(it, NSUTF8StringEncoding).toString()
             }
         }
+    } finally {
     }
-    finally { }
-return ResponseModel(
-    header = headers,
-    body = responseBody,
-    date = date,
-    statusCode = status.toInt(),
-    timeInterval = DateUtil.calculateDiff(from = date, to = requestDate),
-)
+    return ResponseModel(
+        header = headers,
+        body = responseBody,
+        date = date,
+        statusCode = status.toInt(),
+        timeInterval = DateUtil.calculateDiff(from = date, to = requestDate),
+    )
 }
 
 fun NSURLRequest.toCurlCommand(body: String): String {
@@ -118,6 +126,6 @@ fun NSInputStream.toHttpBody(): String {
 
         nativeHeap.free(buffer)
         inputStream.close()
-        return  NSString.create(data = data, encoding = NSUTF8StringEncoding).toString()
+        return NSString.create(data = data, encoding = NSUTF8StringEncoding).toString()
     }
 }

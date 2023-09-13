@@ -22,7 +22,7 @@ internal fun APICallScreen(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(vertical = 16.dp, horizontal = 4.dp)
     ) {
-        itemsIndexed(apiCallList){index, state ->
+        itemsIndexed(apiCallList) { index, state ->
             APIInfoRow(
                 state = state.summary,
                 onClick = {

@@ -19,12 +19,12 @@ internal object DeepLinkHandler {
     }
 
     fun handleDeepLink(uri: Uri?): Boolean {
-        uri?.let {path ->
+        uri?.let { path ->
             val newPrefValues = mutableMapOf<String, String>()
             val queries = path.queryParameterNames.toList()
 
             queries.forEach { key ->
-                val value =  path.getQueryParameter(key)
+                val value = path.getQueryParameter(key)
                 value?.let {
                     newPrefValues[key] = it
                 }
