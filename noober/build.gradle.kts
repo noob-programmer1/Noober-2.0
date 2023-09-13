@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kmmbridge)
-    //`maven-publish`
+    `maven-publish`
     id("convention.publication")
 }
 
