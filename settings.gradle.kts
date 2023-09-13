@@ -28,6 +28,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Noober20"
-//includeBuild("convention-plugins")
+includeBuild("convention-plugins")
 include(":noober")
 include(":noober-no-op")
