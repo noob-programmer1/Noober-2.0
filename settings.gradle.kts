@@ -2,7 +2,7 @@ pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
-         mavenCentral()
+        mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 
@@ -28,6 +28,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Noober20"
-includeBuild("convention-plugins")
+//includeBuild("convention-plugins")
 include(":noober")
 include(":noober-no-op")
